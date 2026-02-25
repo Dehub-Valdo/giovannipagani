@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<title>Giovanni Pagani Studio</title>
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+<div class="brand">
+<small>Projects since 1996</small>
+<h1>GIOVANNI PAGANI STUDIO</h1>
+</div>
+
+<nav class="menu">
+<a href="#architecture">Architecture</a>
+<a href="#design">Design</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+
+<!-- ================= CONTENT ================= -->
+
+<div class="content">
+
+<!-- ================= ARCHITECTURE ================= -->
+
+<section id="architecture" class="section">
+
+<div class="project">
+
+<div class="project-image">
+<div class="image-wrapper">
+
+<!-- ADD MORE IMAGES HERE -->
+<img src="assets/img/homepage/project1.jpg" class="active">
+<img src="assets/img/homepage/project1-2.jpg">
+<img src="assets/img/homepage/project1-3.jpg">
+
+</div>
+</div>
+
+<div class="project-text">
+<div class="category">ARCHITECTURE</div>
+<div class="title">Private Villa</div>
+<p>
+Architecture description here.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DESIGN ================= -->
+
+<section id="design" class="section">
+
+<div class="project">
+
+<div class="project-image">
+<div class="image-wrapper">
+
+<img src="assets/img/homepage/sofa/sofa1.jpg" class="active">
+<img src="assets/img/homepage/sofa/sofa2.jpg">
+<img src="assets/img/homepage/sofa/sofa3.jpg">
+
+</div>
+</div>
+
+<div class="project-text">
+<div class="category">DESIGN</div>
+<div class="title">Vicious Sofa</div>
+<p>
+Design description here.
+</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ================= FULLSCREEN ================= -->
+<div class="fullscreen">
+<img src="">
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+/* ========== FADE CAROUSEL + AUTO SLIDE ========== */
+
+document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+
+const images = wrapper.querySelectorAll('img');
+let index = 0;
+
+setInterval(() => {
+images[index].classList.remove('active');
+index = (index + 1) % images.length;
+images[index].classList.add('active');
+}, 4000);
+
+/* FULLSCREEN ON CLICK */
+wrapper.addEventListener('click', () => {
+const active = wrapper.querySelector('.active');
+const fullscreen = document.querySelector('.fullscreen');
+fullscreen.querySelector('img').src = active.src;
+fullscreen.classList.add('active');
+});
+
+});
+
+/* CLOSE FULLSCREEN */
+document.querySelector('.fullscreen').addEventListener('click', function(){
+this.classList.remove('active');
+});
+
+/* ========== SCROLL REVEAL ========== */
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+}
+});
+}, {threshold:0.2});
+
+document.querySelectorAll('.project').forEach(project => {
+observer.observe(project);
+});
+
+</script>
+
+</body>
+</html>

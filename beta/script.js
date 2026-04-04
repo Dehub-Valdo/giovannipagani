@@ -112,3 +112,21 @@
   });
 
 })();
+document.querySelectorAll(".slide").forEach((img) => {
+  img.addEventListener("error", function () {
+    // Hide the broken image
+    this.style.display = "none";
+
+    // If it's the active slide, move to the next available one
+    if (this.classList.contains("active")) {
+      let slides = Array.from(this.parentElement.querySelectorAll(".slide"))
+        .filter(s => s.style.display !== "none");
+
+      let currentIndex = slides.indexOf(this);
+      let nextSlide = slides[currentIndex + 1] || slides[0];
+
+      this.classList.remove("active");
+      if (nextSlide) nextSlide.classList.add("active");
+    }
+  });
+});
